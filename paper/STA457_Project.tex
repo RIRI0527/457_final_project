@@ -171,7 +171,7 @@ Learning}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, sharp corners, frame hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, interior hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, sharp corners, interior hidden, breakable, enhanced, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -444,6 +444,9 @@ Mean Absolute Error (MAE), and Mean Absolute Percentage Error (MAPE). We
 also visually compared the predicted values against the actual cocoa
 prices to assess model behavior over time.
 
+\hypertarget{ets-model}{%
+\subsection{ETS Model}\label{ets-model}}
+
 We began with Exponential Smoothing (ETS) models. The first model was
 trained using the default ets() function in R, which likely assumed a
 simple additive error with no seasonality. Despite its simplicity, ETS
@@ -457,6 +460,9 @@ algorithm to explore all possible combinations of error, trend, and
 seasonal components. Surprisingly, ETS Model 2 produced identical
 evaluation metrics to Model 1, suggesting that even the optimal ETS
 configuration could not keep pace with the rapid market changes.
+
+\hypertarget{arimax-and-sarimax-model}{%
+\subsection{ARIMAX and SARIMAX Model}\label{arimax-and-sarimax-model}}
 
 Next, we implemented autoregressive models using the auto.arima()
 function from the forecast package. This approach selects the
@@ -705,8 +711,8 @@ Model & RMSE & MAE & MAPE \\
 Model & RMSE & MAE & MAPE \\
 \midrule()
 \endhead
-Random Forest & 1680.03 & 754.90 & NaN \\
-Rolling XGBoost & 373.62 & 186.01 & 5.41 \\
+Random Forest & 1679.52 & 756.76 & NaN \\
+Rolling XGBoost & 370.49 & 182.59 & 5.31 \\
 \bottomrule()
 \end{longtable}
 

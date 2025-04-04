@@ -222,6 +222,7 @@ ets_auto_accuracy <- accuracy(ets_auto_forecast, test$diff_log_price)
 ets_explicit_accuracy <- accuracy(ets_explicit_forecast, test$diff_log_price)
 ```
 
+## ETS Model
 We began with Exponential Smoothing (ETS) models. The first model was trained using the default ets() function in R, which likely assumed a simple additive error with no seasonality. Despite its simplicity, ETS Model 1 provided a baseline for comparison. However, its forecasts were notably flat and failed to capture the steep increase in cocoa prices during the years 2023--2025. This was reflected in its relatively high RMSE of 2078 and MAPE of 20.9%, indicating the model's inability to adapt to structural shifts. To improve upon this, we also fit an automatically-selected ETS model using model = "ZZZ", allowing the algorithm to explore all possible combinations of error, trend, and seasonal components. Surprisingly, ETS Model 2 produced identical evaluation metrics to Model 1, suggesting that even the optimal ETS configuration could not keep pace with the rapid market changes.
 
 ```{r fit-arimax}
@@ -258,6 +259,7 @@ sarimax_forecast <- forecast(sarimax_model, xreg = test_xreg, h = nrow(test))
 sarimax_accuracy <- accuracy(sarimax_forecast, test$diff_log_price)
 ```
 
+## ARIMAX and SARIMAX Model
 Next, we implemented autoregressive models using the auto.arima() function from the forecast package. This approach selects the best-fitting ARIMA configuration by minimizing the corrected Akaike Information Criterion (AICc), balancing model fit and complexity. The resulting ARIMA(0,1,1) model had a similar structure to ETS, relying primarily on recent shocks and differencing. To enrich the model, we incorporated Ghanaian climate variables---precipitation and average, maximum, and minimum temperatures---as exogenous regressors, creating an ARIMAX model. This model was trained on the differenced log prices, with an 80/20 time-based split for training and testing.
 
 ```{r, message = FALSE, warning = FALSE}
