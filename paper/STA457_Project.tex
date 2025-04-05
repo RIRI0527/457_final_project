@@ -171,7 +171,7 @@ Learning}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, sharp corners, interior hidden, breakable, enhanced, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, sharp corners, enhanced, breakable, frame hidden, interior hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -700,9 +700,10 @@ accuracy.
 \hypertarget{model-summary}{%
 \subsection{Model Summary}\label{model-summary}}
 
+\hypertarget{tbl-error-table-2}{}
 \begin{longtable}[]{@{}lrrr@{}}
-\caption{The Error Summary Table (Random Forest vs Rolling XGBoost)
-}\tabularnewline
+\caption{\label{tbl-error-table-2}The Error Summary Table (Random Forest
+vs Rolling XGBoost)}\tabularnewline
 \toprule()
 Model & RMSE & MAE & MAPE \\
 \midrule()
@@ -711,19 +712,19 @@ Model & RMSE & MAE & MAPE \\
 Model & RMSE & MAE & MAPE \\
 \midrule()
 \endhead
-Random Forest & 1679.52 & 756.76 & NaN \\
-Rolling XGBoost & 370.49 & 182.59 & 5.31 \\
+Random Forest & 1681.19 & 755.48 & NaN \\
+Rolling XGBoost & 373.80 & 184.68 & 5.36 \\
 \bottomrule()
 \end{longtable}
 
-The model summary presented in @error-table-2 consolidates the error
-metrics for the two best-performing machine learning models---Random
-Forest and Rolling XGBoost. Among them, the Rolling XGBoost model
-clearly delivered superior results, achieving an RMSE of 374.55 and a
-MAPE of just 5.35\%. (Note: the RMSE and MAPE will typically changed
-each time we run the code, this is due to the model re-training at
-eachtime and XGBoost has randomness. But the RMSE is in the range
-\([350, 450]\), and the MAPE is in the range \([5%, 6%]
+The model summary presented in Table~\ref{tbl-error-table-2}
+consolidates the error metrics for the two best-performing machine
+learning models---Random Forest and Rolling XGBoost. Among them, the
+Rolling XGBoost model clearly delivered superior results, achieving an
+RMSE of 374.55 and a MAPE of just 5.35\%. (Note: the RMSE and MAPE will
+typically changed each time we run the code, this is due to the model
+re-training at eachtime and XGBoost has randomness. But the RMSE is in
+the range \([350, 450]\), and the MAPE is in the range \([5%, 6%]
 \). ) This reflects its ability to adapt to complex nonlinear patterns
 and respond to abrupt shifts in cocoa prices, particularly during the
 2023--2025 price surge. In contrast, while the Random Forest model also

@@ -613,7 +613,7 @@ mape_xgb <- mean(abs((results$Actual - results$Predicted) / results$Actual)) * 1
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 #| tbl-cap: The Error Summary Table (Random Forest vs Rolling XGBoost)
-#| label: error-table-2
+#| label: tbl-error-table-2
 library(kableExtra)
 rmse_roll_xgb <- rmse(results$Actual, results$Predicted)
 mae_roll_xgb <- mae(results$Actual, results$Predicted)
@@ -638,7 +638,7 @@ ml_error_table <- bind_rows(rf_error, rolling_xgb_error)
 kable(ml_error_table, caption = "Table: Forecast Error Metrics for ML Models (Random Forest and Rolling XGBoost)")
 ```
 
-The model summary presented in @error-table-2 consolidates the error metrics for the two best-performing machine learning models---Random Forest and Rolling XGBoost. Among them, the Rolling XGBoost model clearly delivered superior results, achieving an RMSE of 374.55 and a MAPE of just 5.35%. (Note: the RMSE and MAPE will typically changed each time we run the code, this is due to the model re-training at eachtime and XGBoost has randomness. But the RMSE is in the range $[350, 450]$, and the MAPE is in the range $[5%, 6%]$. ) This reflects its ability to adapt to complex nonlinear patterns and respond to abrupt shifts in cocoa prices, particularly during the 2023--2025 price surge. In contrast, while the Random Forest model also performed better than all classical models, it showed higher prediction errors and struggled more with extreme fluctuations. These results highlight the advantages of rolling continuous learning in predicting highly volatile commodity markets and emphasize the importance of temporal structure and lagged features in improving prediction accuracy.
+The model summary presented in @tbl-error-table-2 consolidates the error metrics for the two best-performing machine learning models---Random Forest and Rolling XGBoost. Among them, the Rolling XGBoost model clearly delivered superior results, achieving an RMSE of 374.55 and a MAPE of just 5.35%. (Note: the RMSE and MAPE will typically changed each time we run the code, this is due to the model re-training at eachtime and XGBoost has randomness. But the RMSE is in the range $[350, 450]$, and the MAPE is in the range $[5%, 6%]$. ) This reflects its ability to adapt to complex nonlinear patterns and respond to abrupt shifts in cocoa prices, particularly during the 2023--2025 price surge. In contrast, while the Random Forest model also performed better than all classical models, it showed higher prediction errors and struggled more with extreme fluctuations. These results highlight the advantages of rolling continuous learning in predicting highly volatile commodity markets and emphasize the importance of temporal structure and lagged features in improving prediction accuracy.
 
 # Discussion and Conclusion
 
